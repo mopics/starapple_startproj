@@ -1,0 +1,26 @@
+<ul>
+  <li *ngFor="let itm of menu">
+    {{ itm.name }}
+  </li>
+</ul>
+<ul>
+  Verfijn op kleur:
+  <li *ngFor="let itm of colors">
+    <input (click)="colorClicked( itm.id )" type="radio" name="color"> {{ itm.name }}
+
+  </li>
+</ul>
+<ul>
+  Verfijn op materiaal
+  <li *ngFor="let itm of materials">
+    <input (click)="materialClicked( itm.id )" type="radio" name="material"> {{ itm.name }}
+  </li>
+</ul>
+<ul>
+  <span *ngFor="let itm of articles">
+    <li *ngIf="itm.color==selectedColor && itm.material==selectedMaterial"  >
+      <img src="{{ itm.img }}" width="100px" height="100px">
+      <span>{{ itm.name }}</span><span>&euro;{{itm.price}}</span>
+    </li>
+  </span>
+</ul>
