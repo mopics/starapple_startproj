@@ -1,1 +1,75 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "assets/fonts/scss/font-awesome.scss";
+
+$bg : #eee;
+$text-color: #333;
+$accent-color:#FF0000;
+$menu-bg: #ccc;
+$menu-hover-bg: #fff;
+
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,700');
+// font-family: 'Playfair Display', serif;
+
+body {
+  background: $bg;
+  color:$text-color;
+  font-family:  'Arial', serif;
+
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 20pt;
+  float:left;
+  padding-left: 50px;
+  padding-right: 20px;
+  padding-top: 3px;
+}
+.shop-btn {
+  float: right;
+  padding-top: 7px;
+  padding-right:50px;
+  font-family:  'Arial', serif;
+  font-size: 12pt;
+}
+
+.filter-container{
+  padding-top: 10px;
+  padding-left: 50px;
+  border: 1px $text-color;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu {
+  overflow: hidden;
+  background-color: $menu-bg;
+
+}
+
+.menu-itm{
+  float: left;
+}
+.menu-itm a{
+  display: block;
+  color: $text-color;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 12pt;
+}
+.menu-itm a:hover{
+  background-color: $menu-hover-bg;
+}
+.menu-itm a::active{
+  color: $accent-color;
+}
+
+.art-container{
+
+}

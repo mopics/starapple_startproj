@@ -1,26 +1,37 @@
-<ul>
-  <li *ngFor="let itm of menu">
-    {{ itm.name }}
-  </li>
-</ul>
-<ul>
-  Verfijn op kleur:
-  <li *ngFor="let itm of colors">
-    <input (click)="colorClicked( itm.id )" type="radio" name="color"> {{ itm.name }}
+<div class="top-container">
+  <ul class="menu">
+    <li class="logo">V&E</li>
+    <li *ngFor="let itm of menu" class="menu-itm">
+      <a [style.color]="itm.id==selectedType ? 'red' : '#333'" (click)="menuItmClicked(itm.id)" >{{ itm.name }}</a>
+    </li>
+    <li class="shop-btn">
+      <a ><i class="fa fa-shopping-cart fa-2x"></i>&nbsp;&nbsp;{{shopItems}} Items</a>
+    </li>
+  </ul>
+</div>
+<div class="filter-container">
+  <ul>
+    Verfijn op kleur:
+    <li *ngFor="let itm of colors">
+      <input (click)="colorClicked( itm.id )" type="radio" name="color"> {{ itm.name }}
 
-  </li>
-</ul>
+    </li>
+  </ul>
+  <ul>
+    Verfijn op materiaal
+    <li *ngFor="let itm of materials">
+      <input (click)="materialClicked( itm.id )" type="radio" name="material"> {{ itm.name }}
+    </li>
+  </ul>
+</div>
+
 <ul>
-  Verfijn op materiaal
-  <li *ngFor="let itm of materials">
-    <input (click)="materialClicked( itm.id )" type="radio" name="material"> {{ itm.name }}
-  </li>
-</ul>
-<ul>
+  <div class="art-container">
   <span *ngFor="let itm of articles">
-    <li *ngIf="itm.color==selectedColor && itm.material==selectedMaterial"  >
+    <li *ngIf="itm.color==selectedColor && itm.material==selectedMaterial && itm.type==selectedType"  >
       <img src="{{ itm.img }}" width="100px" height="100px">
       <span>{{ itm.name }}</span><span>&euro;{{itm.price}}</span>
     </li>
   </span>
+</div>
 </ul>

@@ -21,6 +21,8 @@ export class ArticleListComponent implements OnInit {
   }];
 
   shopItems = 0;
+  selectedType = 0;
+
   selectedColor = "zwart";
   selectedMaterial = "katoen";
   selectedArticle = null;
@@ -151,6 +153,9 @@ export class ArticleListComponent implements OnInit {
   }
   articleClicked( id ){
     this.selectedArticle = id;
+  }
+  menuItmClicked( id ){
+    this.selectedType = id;
   }
 
 }
