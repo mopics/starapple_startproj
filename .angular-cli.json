@@ -24,6 +24,7 @@
         "styles.scss"
       ],
       "scripts": [
+        "../node_modules/html5shiv/dist/html5shiv.min.js",
         "../node_modules/jquery/dist/jquery.min.js",
         "../node_modules/tether/dist/js/tether.min.js",
         "../node_modules/bootstrap/dist/js/bootstrap.min.js"

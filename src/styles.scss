@@ -9,25 +9,88 @@
 @import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,700');
 // font-family: 'Playfair Display', serif;
 
+$xs: 0; // less than 34em
+$sm: 576px; // 34em and up
+$md: 768px; // 48em and up
+$lg: 992px; // 62em and up
+$xl: 1200px; // 75em and up
+
+ul{
+  list-style-type:none;
+}
 #page{
-  
+
 }
 #logo {
   font-family: 'Playfair Display', serif;
-  font-size:4em;
+  font-size:3rem;
+  //
+  @media(max-width:$md){
+    font-size:2rem;
+  }
 }
+
+.article-img {
+  margin-bottom:10px;
+  @media(max-width:$md) {
+    max-width:50%;
+    float:left;
+  }
+}
+.article-title {
+  font-weight: bold;
+  white-space: nowrap;
+  @media(max-width:$md) {
+    font-size:16pt;
+    position:relative;
+    top:75px;
+    left:10px;
+  }
+}
+.article-price {
+  float:right;
+  margin-top:-25px;
+  @media(max-width:$md) {
+    position:relative;
+    top:95px;
+    font-size:14pt;
+    left:-45px;
+    float:none;
+  }
+}
+.article-col {
+  margin-top: 20px;
+  margin-left: 10px;
+  //background-color: #eee;
+  padding:0;
+  max-width:256px;
+  @media(max-width:$md){
+    max-width:100%;
+  }
+}
+
+.filter-col{
+  padding-top:40px;
+}
+.filter-title {
+  margin-bottom: 5px;
+  font-size:12pt;
+  font-weight: bold;
+}
+
 .navbar {
   width:100%;
-  background: none !important;
+  background: #eee !important;
 
   // mobile devices only
-  @media(max-width:34em) {
-    background: #eee !important;
+  @media(max-width:$md) {
+    background: #ececec !important;
   }
 
   .navbar-toggler {
     cursor:pointer;
     outline:0;
+    height:3rem !important;
   }
 
   .nav-link {
@@ -38,11 +101,11 @@
   .nav-item {
     padding:0 1rem;
 
-    @media(max-width:34em) {
+    @media(max-width:$md) {
       padding:0;
     }
     .nav-link {
-      @media(max-width: 34em){
+      @media(max-width: $md){
         //font-weight: normal;
         //color:#333 !important;
       }

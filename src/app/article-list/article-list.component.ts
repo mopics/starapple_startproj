@@ -21,7 +21,7 @@ export class ArticleListComponent implements OnInit {
   }];
 
   shopItems = 0;
-  selectedType = 0;
+  selectedType = 1;
 
   selectedColor = "black";
   selectedMaterial = "cotton";
@@ -149,6 +149,8 @@ export class ArticleListComponent implements OnInit {
   generateArticles(){
     var arr = [];
     var types = ["men", "women", "kids" ];
+    var colors = ["black","blue","brown","white"];
+    var cnt = 0;
 
     for( var i=0; i<20; i++ ){
 
@@ -158,18 +160,19 @@ export class ArticleListComponent implements OnInit {
         for( var m=0; m<3; m++ ){
           for( var c = 0; c<4; c++ ){
             var art = { name:"", type:0, color:"", material:"", img:"", price:"99,95" };
-            art.name = "Artikel "+(i+t+c+m);
+            art.name = "Artikel "+cnt;
             art.type = t;
             art.color = this.colors[c].id;
             art.material = this.materials[m].id;
-            art.img = "assets/"+types[t]+"/"+this.colors[c].id+"_"+this.materials[m].id+".jpg";
-            art.price = Math.round(Math.random()*10) + "," + Math.round(Math.random()*10);
+            art.img = "assets/"+types[t]+"/"+colors[c]+"_cotton.jpg"//"assets/"+types[t]+"/"+this.colors[c].id+"_"+this.materials[m].id+".jpg";
+            art.price = Math.round(Math.random()*100) + "," + Math.round(Math.random()*100);
             arr.push( art );
+            cnt ++;
           }
         }
       }
     }
-    console.log( arr );
+    //console.log( arr );
     return arr;
   }
 

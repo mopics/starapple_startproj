@@ -1,50 +1,64 @@
 <div id="page">
   <div class="container">
     <div class="row">
-      <nav class="navbar navbar-toggleable-md navbar-light">
-        <a href="#" class="navbar-brand text-primary" id="logo">V&E</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-        <ul class="navbar-nav">
-          <li *ngFor="let itm of menu" class="nav-item">
-            <a class="nav-link"
-             (click)="menuItmClicked(itm.id)"
-            [style.color]="itm.id==selectedType ? 'red' : '#333'"
+        <nav class="navbar navbar-toggleable-sm navbar-light">
+          <a href="#" class="navbar-brand text-primary text-center text-md-left" id="logo">V&E</a>
+          <button class="navbar-toggler navbar-toggler-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+            <li *ngFor="let itm of menu" class="nav-item">
+              <a class="nav-link"
+               (click)="menuItmClicked(itm.id)"
+              [style.color]="itm.id==selectedType ? 'red' : '#333'"
 
-            href="#">{{itm.name}}</a>
-          </li>
-        </ul>
-        </div>
-      </nav>
+              href="#">{{itm.name}}</a>
+            </li>
+          </ul>
+          </div>
+        </nav>
     </div>
+
     <div class="row page-content">
-      <div class="col-md-2 col-sm-20">
+
+      <!-- start Verfijn col -->
+      <div class="col-md-12 col-lg-3 filter-col">
         <ul>
-          Verfijn op kleur:
+          <div class="filter-title">Verfijn op kleur:</div>
           <li *ngFor="let itm of colors">
             <input (click)="colorClicked( itm.id )" type="radio" name="color"> {{ itm.name }}
 
           </li>
         </ul>
         <ul>
-          Verfijn op materiaal
+          <div class="filter-title">Verfijn op materiaal:</div>
           <li *ngFor="let itm of materials">
             <input (click)="materialClicked( itm.id )" type="radio" name="material"> {{ itm.name }}
           </li>
         </ul>
-      </div><!-- end Verfijn col-->
-      <div class="col-md-2 col-sm-80">
+      </div>
+      <!-- end Verfijn col-->
+
+      <!-- start articles all-col-->
+      <div class="col-md-12 col-lg-9">
         <div class="row">
-          <div *ngFor="let itm of articles" class="col-3">
-            <a *ngIf="itm.color==selectedColor && itm.material==selectedMaterial && itm.type==selectedType"  >
-              <img src="{{ itm.img }}" width="100px" height="100px">
-              <span>{{ itm.name }}</span><span>&euro;{{itm.price}}</span>
-            </a>
-          </div><!--end articles col-3-->
+          <div *ngFor="let itm of articles" >
+
+            <div *ngIf="itm.color==selectedColor && itm.material==selectedMaterial && itm.type==selectedType" class="col-xs-12 col-md-6 col-lg-4 article-col" >
+              <div>
+                <a href="#" class="thumbnail"><img class="article-img" src="{{ itm.img }}"></a>
+              </div>
+              <div>
+                <div class="col-8 article-title">{{ itm.name }} </div>
+                <div class="col-4 float-right article-price">&euro;{{itm.price}}</div>
+              </div>
+            </div>
+          </div><!--end single-articles col-->
         </div><!--end articles row -->
-      </div><!--end articles page-col-->
+      </div><!--end all articles-col-->
+
+
     </div><!--end page-content-->
   </div><!--end container-->
 <div><!-- end page -->
