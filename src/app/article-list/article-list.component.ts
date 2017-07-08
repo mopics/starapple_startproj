@@ -23,34 +23,34 @@ export class ArticleListComponent implements OnInit {
   shopItems = 0;
   selectedType = 0;
 
-  selectedColor = "zwart";
-  selectedMaterial = "katoen";
+  selectedColor = "black";
+  selectedMaterial = "cotton";
   selectedArticle = null;
   colors = [
     {
-      id:"zwart",
+      id:"black",
       name:"Zwart"
     },
     {
-      id:"blauw",
+      id:"blue",
       name:"Blauw"
     },
     {
-      id:"bruin",
+      id:"brown",
       name:"Bruin"
     },
     {
-      id:"wit",
+      id:"white",
       name:"Wit"
     }
   ];
   materials = [
     {
-      id:"katoen",
+      id:"cotton",
       name:"Katoen"
     },
     {
-      id:"polyester",
+      id:"poly",
       name:"Polyester"
     },
     {
@@ -64,7 +64,7 @@ export class ArticleListComponent implements OnInit {
       type:0,
       color:"zwart",
       material:"katoen",
-      img:"/notset",
+      img:"assets/men/black_cotton.jpg",
       price:"99,95"
     },
     {
@@ -72,7 +72,7 @@ export class ArticleListComponent implements OnInit {
       type:1,
       color:"blauw",
       material:"polyester",
-      img:"/notset",
+      img:"assets/women/blue_poly.jpg",
       price:"49,95"
     },
     {
@@ -80,7 +80,7 @@ export class ArticleListComponent implements OnInit {
       type:2,
       color:"bruin",
       material:"wol",
-      img:"/notset",
+      img:"assets/kids/brown_wol.jpg",
       price:"49,95"
     },
     {
@@ -88,7 +88,7 @@ export class ArticleListComponent implements OnInit {
       type:0,
       color:"bruin",
       material:"katoen",
-      img:"/notset",
+      img:"assets/men/brown_cotton.jpg",
       price:"199,95"
     },
     {
@@ -96,7 +96,7 @@ export class ArticleListComponent implements OnInit {
       type:1,
       color:"blauw",
       material:"katoen",
-      img:"/notset",
+      img:"assets/women/blue_cotton.jpg",
       price:"99,95"
     },
     {
@@ -104,7 +104,7 @@ export class ArticleListComponent implements OnInit {
       type:0,
       color:"wit",
       material:"wol",
-      img:"/notset",
+      img:"assets/men/white_wol.jpg",
       price:"99,95"
     },
     {
@@ -112,7 +112,7 @@ export class ArticleListComponent implements OnInit {
       type:1,
       color:"zwart",
       material:"katoen",
-      img:"/notset",
+      img:"assets/women/black_cotton.jpg",
       price:"&euro;69,95"
     },
     {
@@ -120,7 +120,7 @@ export class ArticleListComponent implements OnInit {
       type:2,
       color:"blauw",
       material:"polyester",
-      img:"/notset",
+      img:"assets/kids/blue_poly.jpg",
       price:"99,95"
     },
     {
@@ -128,7 +128,7 @@ export class ArticleListComponent implements OnInit {
       type:0,
       color:"bruin",
       material:"katoen",
-      img:"/notset",
+      img:"assets/men/brown_cotton.jpg",
       price:"99,95"
     },
     {
@@ -136,13 +136,41 @@ export class ArticleListComponent implements OnInit {
       type:1,
       color:"wit",
       material:"katoen",
-      img:"/notset",
+      img:"assets/women/white_cotton.jpg",
       price:"99,95"
     },
   ];
   constructor() { }
 
   ngOnInit() {
+    this.articles = this.generateArticles();
+  }
+
+  generateArticles(){
+    var arr = [];
+    var types = ["men", "women", "kids" ];
+
+    for( var i=0; i<20; i++ ){
+
+
+      // create 2 more for-loops recursivly
+      for( var t=0; t<3; t++ ){
+        for( var m=0; m<3; m++ ){
+          for( var c = 0; c<4; c++ ){
+            var art = { name:"", type:0, color:"", material:"", img:"", price:"99,95" };
+            art.name = "Artikel "+(i+t+c+m);
+            art.type = t;
+            art.color = this.colors[c].id;
+            art.material = this.materials[m].id;
+            art.img = "assets/"+types[t]+"/"+this.colors[c].id+"_"+this.materials[m].id+".jpg";
+            art.price = Math.round(Math.random()*10) + "," + Math.round(Math.random()*10);
+            arr.push( art );
+          }
+        }
+      }
+    }
+    console.log( arr );
+    return arr;
   }
 
   colorClicked( id ){
