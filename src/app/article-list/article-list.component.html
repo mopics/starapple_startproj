@@ -6,23 +6,24 @@
               <span class="navbar-toggler-icon"></span>
           </button>
           <a href="#" class="navbar-brand text-primary text-center text-md-left" id="logo">V&E</a>
-
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav">
-            <li *ngFor="let itm of menu" class="nav-item">
-              <a class="nav-link"
-               (click)="menuItmClicked(itm.id)"
-              [style.color]="itm.id==selectedType ? 'red' : '#333'"
-
-              href="#">{{itm.name}}</a>
-            </li>
-          </ul>
-          </div>
-          <a href="#" id="shop-btn" class="navbar-right text-right">
-
+          <a href="#" id="shop-btn" class="navbar-brand text-primary text-right shop-btn-short">
               <div class="fa fa-shopping-cart" ></div>
-              &nbsp;{{shopItems}}&nbsp;<span class="visible-sm">Items</span>
+              &nbsp;{{shopItems}}&nbsp;
+          </a>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+              <li *ngFor="let itm of menu" class="nav-item">
+                <a class="nav-link"
+                 (click)="menuItmClicked(itm.id)"
+                [style.color]="itm.id==selectedType ? 'red' : '#333'"
 
+                href="#">{{itm.name}}</a>
+              </li>
+            </ul>
+          </div>
+          <a href="#" id="shop-btn" class="navbar-brand text-primary text-right shop-btn-long">
+              <div class="fa fa-shopping-cart" ></div>
+              &nbsp;{{shopItems}}&nbsp;ITEMS
           </a>
         </nav>
     </div>

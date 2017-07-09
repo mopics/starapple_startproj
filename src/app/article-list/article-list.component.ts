@@ -45,7 +45,7 @@ export class ArticleListComponent implements OnInit {
     },
     {
       id:"all",
-      name:"Laat alle kleuren zien"
+      name:"Alle kleuren"
     }
   ];
   materials = [
@@ -63,7 +63,7 @@ export class ArticleListComponent implements OnInit {
     },
     {
       id:"all",
-      name:"Laat alle materialen zien"
+      name:"Alle materialen"
     }
   ]
   articles = [];

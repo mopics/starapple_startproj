@@ -35,7 +35,7 @@ ul{
 #shop-btn{
   //background-color: red;
   font-family:Arial;
-  font-size: 16pt;
+  font-size: 14pt;
   font-weight: bold;
   height:30px;
   white-space: nowrap;
@@ -46,12 +46,19 @@ ul{
   }
 }
 
-.visible-sm{
+.shop-btn-short{
+  display:none;
+  @media(max-width:$md){
+    display:inline;
+  }
+}
+.shop-btn-long{
   display:inline;
   @media(max-width:$md){
     display:none;
   }
 }
+
 
 .article-img {
   margin-bottom:10px;
