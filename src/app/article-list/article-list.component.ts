@@ -23,8 +23,8 @@ export class ArticleListComponent implements OnInit {
   shopItems = 0;
   selectedType = 1;
 
-  selectedColor = "black";
-  selectedMaterial = "cotton";
+  selectedColor = "all";
+  selectedMaterial = "all";
   selectedArticle = null;
   colors = [
     {
@@ -42,6 +42,10 @@ export class ArticleListComponent implements OnInit {
     {
       id:"white",
       name:"Wit"
+    },
+    {
+      id:"all",
+      name:"Laat alle kleuren zien"
     }
   ];
   materials = [
@@ -56,94 +60,20 @@ export class ArticleListComponent implements OnInit {
     {
       id:"wol",
       name:"Wol"
+    },
+    {
+      id:"all",
+      name:"Laat alle materialen zien"
     }
   ]
-  articles = [
-    {
-      name:"Artikel A",
-      type:0,
-      color:"zwart",
-      material:"katoen",
-      img:"assets/men/black_cotton.jpg",
-      price:"99,95"
-    },
-    {
-      name:"Artikel B",
-      type:1,
-      color:"blauw",
-      material:"polyester",
-      img:"assets/women/blue_poly.jpg",
-      price:"49,95"
-    },
-    {
-      name:"Artikel C",
-      type:2,
-      color:"bruin",
-      material:"wol",
-      img:"assets/kids/brown_wol.jpg",
-      price:"49,95"
-    },
-    {
-      name:"Artikel D",
-      type:0,
-      color:"bruin",
-      material:"katoen",
-      img:"assets/men/brown_cotton.jpg",
-      price:"199,95"
-    },
-    {
-      name:"Artikel E",
-      type:1,
-      color:"blauw",
-      material:"katoen",
-      img:"assets/women/blue_cotton.jpg",
-      price:"99,95"
-    },
-    {
-      name:"Artikel F",
-      type:0,
-      color:"wit",
-      material:"wol",
-      img:"assets/men/white_wol.jpg",
-      price:"99,95"
-    },
-    {
-      name:"Artikel G",
-      type:1,
-      color:"zwart",
-      material:"katoen",
-      img:"assets/women/black_cotton.jpg",
-      price:"&euro;69,95"
-    },
-    {
-      name:"Artikel H",
-      type:2,
-      color:"blauw",
-      material:"polyester",
-      img:"assets/kids/blue_poly.jpg",
-      price:"99,95"
-    },
-    {
-      name:"Artikel I",
-      type:0,
-      color:"bruin",
-      material:"katoen",
-      img:"assets/men/brown_cotton.jpg",
-      price:"99,95"
-    },
-    {
-      name:"Artikel J",
-      type:1,
-      color:"wit",
-      material:"katoen",
-      img:"assets/women/white_cotton.jpg",
-      price:"99,95"
-    },
-  ];
+  articles = [];
+  filteredArticles = [];
+
   constructor() { }
 
   ngOnInit() {
     this.articles = this.generateArticles();
+    this.filterArticles();
   }
 
   generateArticles(){
@@ -160,12 +90,12 @@ export class ArticleListComponent implements OnInit {
         for( var m=0; m<3; m++ ){
           for( var c = 0; c<4; c++ ){
             var art = { name:"", type:0, color:"", material:"", img:"", price:"99,95" };
-            art.name = "Artikel "+cnt;
+            art.name = this.materials[m].name+"("+this.colors[c].name+") "+cnt;
             art.type = t;
             art.color = this.colors[c].id;
             art.material = this.materials[m].id;
             art.img = "assets/"+types[t]+"/"+colors[c]+"_cotton.jpg"//"assets/"+types[t]+"/"+this.colors[c].id+"_"+this.materials[m].id+".jpg";
-            art.price = Math.round(Math.random()*100) + "," + Math.round(Math.random()*100);
+            art.price = this.genRandomPrice();
             arr.push( art );
             cnt ++;
           }
@@ -178,15 +108,68 @@ export class ArticleListComponent implements OnInit {
 
   colorClicked( id ){
     this.selectedColor = id;
+    this.filterArticles();
   }
-  materialClicked( id ){
+  materialClicked( id ) {
     this.selectedMaterial = id;
+    this.filterArticles();
   }
   articleClicked( id ){
     this.selectedArticle = id;
   }
   menuItmClicked( id ){
     this.selectedType = id;
+    this.filterArticles();
   }
+  purchase(){
+    this.shopItems ++;
+  }
+  genRandomPrice(){
+    var e = Math.round(Math.random()*100)+"";
+    if( e.length>2 ){
+      e = "00";
+    }else if(e.length<2){
+      e = "0"+e;
+    }
+    var c = Math.round(Math.random()*100)+"";
+    if( c.length>2 ){
+      c = "00";
+    }else if(c.length<2){
+      c = "0"+c;
+    }
+    return e + "," + c;
 
+  }
+  filterArticles(){
+    this.filteredArticles = [];
+    for( var i=0; i<this.articles.length; i++ ){
+      if( this.showArticle( this.articles[i])){
+        this.filteredArticles.push( this.articles[i]);
+      }
+    }
+  }
+  showArticle( art ) {
+    var t_ok = false;
+    var c_ok = false;
+    var m_ok = false;
+    if( art.type == this.selectedType ){
+      t_ok = true;
+      if( this.selectedMaterial=="all" ){
+        m_ok = true;
+      }
+      if(this.selectedColor=="all" ){
+        c_ok = true;
+      }
+      if( this.selectedMaterial == art.material ){
+        m_ok = true;
+      }
+      if( this.selectedColor==art.color){
+        c_ok = true;
+      }
+      if( t_ok==true && c_ok==true && m_ok==true) {
+        return true;
+      }
+      return false;
+    }
+  }
 }

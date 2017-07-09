@@ -2,11 +2,12 @@
   <div class="container">
     <div class="row">
         <nav class="navbar navbar-toggleable-sm navbar-light">
-          <a href="#" class="navbar-brand text-primary text-center text-md-left" id="logo">V&E</a>
           <button class="navbar-toggler navbar-toggler-left" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+          <a href="#" class="navbar-brand text-primary text-center text-md-left" id="logo">V&E</a>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav">
             <li *ngFor="let itm of menu" class="nav-item">
               <a class="nav-link"
@@ -17,6 +18,12 @@
             </li>
           </ul>
           </div>
+          <a href="#" id="shop-btn" class="navbar-right text-right">
+
+              <div class="fa fa-shopping-cart" ></div>
+              &nbsp;{{shopItems}}&nbsp;<span class="visible-sm">Items</span>
+
+          </a>
         </nav>
     </div>
 
@@ -43,15 +50,15 @@
       <!-- start articles all-col-->
       <div class="col-md-12 col-lg-9">
         <div class="row">
-          <div *ngFor="let itm of articles" >
+          <div *ngFor="let itm of filteredArticles" >
 
-            <div *ngIf="itm.color==selectedColor && itm.material==selectedMaterial && itm.type==selectedType" class="col-xs-12 col-md-6 col-lg-4 article-col" >
-              <div>
+            <div class="col-xs-12 col-md-6 col-lg-4 article-col" >
+              <div (click)="purchase()">
                 <a href="#" class="thumbnail"><img class="article-img" src="{{ itm.img }}"></a>
               </div>
               <div>
-                <div class="col-8 article-title">{{ itm.name }} </div>
-                <div class="col-4 float-right article-price">&euro;{{itm.price}}</div>
+                <div href="#" (click)="purchase()" class="col-8 article-title">{{ itm.name }} </div>
+                <div href="#" (click)="purchase()" class="col-4 float-right article-price mt">&euro;{{itm.price}}</div>
               </div>
             </div>
           </div><!--end single-articles col-->
